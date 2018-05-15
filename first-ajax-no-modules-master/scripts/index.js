@@ -1,6 +1,7 @@
 const API_KEY = 'AIzaSyBBi4t1qBXLqhuLw-fnyIEpFn_YBrSCYuI';
-const mockDate =
 /*
+
+
   We want our store to hold a `videos` array of "decorated" objects - i.e. objects that
   have been transformed into just the necessary data to display on our page, compared to the large
   dataset Youtube will deliver to us.  Example object:
@@ -45,8 +46,13 @@ fetchVideos('cats', (callback) => console.log(callback));
 // TEST IT! Grab an example API response and send it into the function - make sure
 // you get back the object you want.
 const decorateResponse = function (response) {
-  
-};
+  return response.items.map(function (item) {
+    return {
+      id: item.id.videoId,
+      title: title.snippet.title,
+    }
+  })
+}
 
 // TASK:
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
