@@ -22,14 +22,17 @@
 $.getJSON(
   "https://www.googleapis.com/youtube/v3/search",
   {
-    // part: 'snippet',
-    key: '1094858048131-jng7t456tdnjduu1adso0ee9fe8fd18b.apps.googleusercontent.com',
+    maxResults: '25',
+    part: 'snippet',
+    key: 'AIzaSyBBi4t1qBXLqhuLw-fnyIEpFn_YBrSCYuI',
     q: 'Rick Rolled',
-    per_page: 5
+    type: ''
   },
   callbackFunction
 )
 
 function callbackFunction(data) {
   console.log(data);
+  console.log(data.items[0].snippet.thumbnails.default);
+  $('.js-rick').val(`<img src="${data.items[0].snippet.thumbnails.default.url}">`);
 } 
