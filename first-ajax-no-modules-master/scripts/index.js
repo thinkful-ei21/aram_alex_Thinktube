@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyBBi4t1qBXLqhuLw-fnyIEpFn_YBrSCYuI';
+// const API_KEY = 'AIzaSyBBi4t1qBXLqhuLw-fnyIEpFn_YBrSCYuI';
 
 /*
 
@@ -14,28 +14,28 @@ const API_KEY = 'AIzaSyBBi4t1qBXLqhuLw-fnyIEpFn_YBrSCYuI';
   }
 
 */
-const store = {
-  videos: []
-};
+// const store = {
+//   videos: []
+// };
 
-// TASK: Add the Youtube Search API Base URL here:
-// Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
-const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
+// // TASK: Add the Youtube Search API Base URL here:
+// // Documentation is here: https://developers.google.com/youtube/v3/docs/search/list#usage
+// const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 // TASK:
 // 1. Create a `fetchVideos` function that receives a `searchTerm` and `callback`
 // 2. Use `searchTerm` to construct the right query object based on the Youtube API docs
 // 3. Make a getJSON call using the query object and sending the provided callback in as the last argument
 // TEST IT! Execute this function and console log the results inside the callback.
-const fetchVideos = function (searchTerm, callback) {
-  const query = {
-    part: 'snippet',
-    key: API_KEY,
-    q: searchTerm,
-  }
-  //To return or not to return
-  return $.getJSON(BASE_URL, query, callback);
-};
+// const fetchVideos = function (searchTerm, callback) {
+//   const query = {
+//     part: 'snippet',
+//     key: API_KEY,
+//     q: searchTerm,
+//   }
+//   //To return or not to return
+//   return $.getJSON(BASE_URL, query, callback);
+// };
 
 //fetchVideos('cats', (callback) => console.log(callback));
 
@@ -47,19 +47,19 @@ const fetchVideos = function (searchTerm, callback) {
 // WILL have to dig into several nested properties!vide
 // TEST IT! Grab an example API response and send it into the function - make suvidere
 // you get back the object you want.vide
-const decorateResponse = function (response) {
+// const decorateResponse = function (response) {
 
-  return response.items.map(function (item) {
+//   return response.items.map(function (item) {
 
-    return {
-      id: item.id.videoId,
-      title: item.snippet.title,
-      thumbnail: item.snippet.thumbnails.default.url
-    }
-  });
-}
+//     return {
+//       id: item.id.videoId,
+//       title: item.snippet.title,
+//       thumbnail: item.snippet.thumbnails.default.url
+//     }
+//   });
+// }
 
-const decoratedResponse = decorateResponse(mockData);
+// const decoratedResponse = decorateResponse(mockData);
 
 //console.log(decoratedResponse);
 
@@ -68,13 +68,13 @@ const decoratedResponse = decorateResponse(mockData);
 // 1. Create a `generateVideoItemHtml` function that receives the decorated object
 // 2. Using the object, return an HTML string containing all the expected data
 // TEST IT!
-const generateVideoItemHtml = function (video) {
-  return `
+// const generateVideoItemHtml = function (video) {
+//   return `
 
-    <li data-id="${video.id}">title: "${video.title}"</li>
-    <img src="${video.thumbnail}"/>
-  `;
-};
+//     <li data-id="${video.id}">title: "${video.title}"</li>
+//     <img src="${video.thumbnail}"/>
+//   `;
+// };
 
 //console.log(generateVideoItemHtml(decoratedResponse[0]));
 
@@ -84,19 +84,19 @@ const generateVideoItemHtml = function (video) {
 // 1. Create a `addVideosToStore` function that receives an array of decorated video 
 // objects and sets the array as the value held in store.items
 // TEST IT!
-const addVideosToStore = function (videos) {
-  store.videos = videos;
-};
+// const addVideosToStore = function (videos) {
+//   store.videos = videos;
+// };
 
 // TASK:
 // 1. Create a `render` function
 // 2. Map through `store.videos`, sending each `video` through your `generateVideoItemHtml`
 // 3. Add your array of DOM elements to the appropriate DOM element
 // TEST IT!
-const render = function () {
-  $('.results').html(store.videos.map(video => generateVideoItemHtml(video)));
-  console.log('render run');
-};
+// const render = function () {
+//   $('.results').html(store.videos.map(video => generateVideoItemHtml(video)));
+//   console.log('render run');
+// };
 
 // addVideosToStore(decoratedResponse);
 // console.log(decoratedResponse);
@@ -115,15 +115,15 @@ const render = function () {
 //   f) Inside the callback, add the decorated response into your store using the `addVideosToStore` function
 //   g) Inside the callback, run the `render` function 
 // TEST IT!
-const handleFormSubmit = function () {
-  $('form').on('click', 'input[type="submit"]', function (event) {
-    event.preventDefault();
-    fetchVideos($('#search-term').val(), function (res) {
-      addVideosToStore(decorateResponse(res));
-      render();
-    })
-  });
-};
+// const handleFormSubmit = function () {
+//   $('form').on('click', 'input[type="submit"]', function (event) {
+//     event.preventDefault();
+//     fetchVideos($('#search-term').val(), function (res) {
+//       addVideosToStore(decorateResponse(res));
+//       render();
+//     })
+//   });
+// };
 
 
 
