@@ -3,7 +3,8 @@ const generateListItem = function (video) {
   return `
   
       <li data-id="${video.id}">title: "${video.title}"</li>
-      <img src="${video.thumbnail}"/>
+      <li><a href="https://www.youtube.com/watch?v=${video.id}"><img src="${video.thumbnail}"/></a></li>
+      <li><a href="https://www.youtube.com/channel/${video.channelId}">Go to channel</a></li>
     `;
 };
 
@@ -20,11 +21,13 @@ const handleFormSubmit = function () {
     event.preventDefault();
     console.log("button clicked");  
     api.fetchVideos($('#search-term').val(), function (data){
+      console.log(data);
       const results = data.items.map(function (item){
           return {
               id: item.id.videoId,
               title: item.snippet.title,
-              thumbnail: item.snippet.thumbnails.default.url
+              thumbnail: item.snippet.thumbnails.default.url,
+              channelId: item.snippet.channelId
           };
       });
       store.setVideos(results);
