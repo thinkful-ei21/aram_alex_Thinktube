@@ -1,3 +1,4 @@
+
 // const API_KEY = 'AIzaSyBBi4t1qBXLqhuLw-fnyIEpFn_YBrSCYuI';
 
 /*
@@ -129,7 +130,7 @@
 
 // When DOM is ready:
 $(function () {
-  handleFormSubmit();
+  videoList.bindEventListeners();
   // TASK:
   // 1. Run `handleFormSubmit` to bind the event listener to the DOM
 });

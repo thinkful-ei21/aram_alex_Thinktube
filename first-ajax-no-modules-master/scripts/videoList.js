@@ -1,3 +1,4 @@
+const videoList = (function () {
 const generateListItem = function (video) {
   return `
   
@@ -6,24 +7,37 @@ const generateListItem = function (video) {
     `;
 };
 
-const render1 = (function () {
-  let render = function () {
-    $('.results').html(store.videos.map(video => generateListItem(video)));
-  }
+const render = function () {
+    console.log('rendered called');
+    const results = store.videos.map(item => generateListItem(item));
+    console.log(results);
+    $('.results').html(results);
+}
 
-  console.log('render run');
-
-  return {
-    render
-  }
-})();
 
 const handleFormSubmit = function () {
-  $('form').on('click', 'input[type="submit"]', function (event) {
+  $('form').submit(function (event) {
     event.preventDefault();
-    api.fetchVideos($('#search-term').val(), function (res) {
-      store.setVideos(res);
-      render1.render();
-    })
+    console.log("button clicked");  
+    api.fetchVideos($('#search-term').val(), function (data){
+      const results = data.items.map(function (item){
+          return {
+              id: item.id.videoId,
+              title: item.snippet.title,
+              thumbnail: item.snippet.thumbnails.default.url
+          };
+      });
+      store.setVideos(results);
+      render();
+    });
   });
+}
+
+const bindEventListeners = function() {
+  handleFormSubmit();
+}
+
+return {
+  generateListItem, render, bindEventListeners
 };
+})();

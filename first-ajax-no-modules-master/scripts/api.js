@@ -8,14 +8,9 @@ const api = (function () {
             key: API_KEY,
             q: searchTerm,
         }
-        //To return or not to return
-        console.log($.getJSON(BASE_URL, query, callback));
-        return $.getJSON(BASE_URL, query, callback).map(function(item) {
-            return {
-                id: item.id.videoId,
-                title: item.snippet.title,
-                thumbnail: item.snippet.thumbnails.default.url
-            }
-    })}
-    return {fetchVideos};
-    })();
+    $.getJSON(BASE_URL, query, callback);
+    };
+    return {
+        fetchVideos
+    };
+}());
